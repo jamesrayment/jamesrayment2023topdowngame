@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://d31snr06wddvf"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_jht17"]
+[ext_resource type="PackedScene" uid="uid://bg60dykr58mep" path="res://player.tscn" id="2_pm8c1"]
+[ext_resource type="PackedScene" uid="uid://dllqiyftqqpqd" path="res://enemy.tscn" id="3_iocna"]
+[ext_resource type="PackedScene" uid="uid://ddh37x3gwl3gb" path="res://upgradeselect.tscn" id="4_ff1s0"]
+[ext_resource type="PackedScene" uid="uid://dui3dol3q0imf" path="res://cpu_particles_2d.tscn" id="4_nc5pk"]
+[ext_resource type="PackedScene" uid="uid://bul0ayhi06qlg" path="res://parallax_background.tscn" id="6_c8okt"]
+[ext_resource type="PackedScene" uid="uid://dse5irbeuuuul" path="res://pause.tscn" id="7_1glni"]
+
+[node name="World" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_jht17")
+
+[node name="Player" parent="." instance=ExtResource("2_pm8c1")]
+process_mode = 1
+
+[node name="upgrade" parent="Player" instance=ExtResource("4_ff1s0")]
+offset_left = -548.5
+offset_top = -216.5
+offset_right = -548.5
+offset_bottom = -216.5
+
+[node name="Pause" parent="Player" instance=ExtResource("7_1glni")]
+offset_left = -558.0
+offset_top = -466.0
+offset_right = -558.0
+offset_bottom = -466.0
+
+[node name="enemy" parent="." instance=ExtResource("3_iocna")]
+position = Vector2(308, 1)
+
+[node name="CPUParticles2D" parent="." instance=ExtResource("4_nc5pk")]
+position = Vector2(307, 1)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("6_c8okt")]
+
+[connection signal="pause" from="." to="Player/Pause" method="_on_world_pause"]
+[connection signal="pause_end" from="." to="Player/Pause" method="_on_world_pause_end"]
+[connection signal="upgrade_spawn" from="." to="." method="_on_upgrade_spawn"]
+[connection signal="upgrade_spawn" from="." to="Player/upgrade" method="_on_world_upgrade_spawn"]
+[connection signal="upgrade_spawn" from="." to="enemy" method="_on_world_upgrade_spawn"]
+[connection signal="wave_start" from="." to="Player" method="_on_world_wave_start"]
+[connection signal="wave_start" from="." to="enemy" method="_on_world_wave_start"]
+[connection signal="upgrade_end" from="Player/upgrade" to="." method="_on_control_upgrade_end"]
+[connection signal="world_unpause" from="Player/Pause" to="." method="_on_pause_world_unpause"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]

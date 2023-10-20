@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dllqiyftqqpqd"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_wha2x"]
+[ext_resource type="Texture2D" uid="uid://bbjgkp8ulfyg1" path="res://2dtopdownzombie.png" id="2_qn21y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jv1uw"]
+radius = 25.02
+
+[node name="enemy" type="Area2D" groups=["enemies"]]
+script = ExtResource("1_wha2x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_qn21y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jv1uw")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

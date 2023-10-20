@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://bg60dykr58mep"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_ri586"]
+[ext_resource type="PackedScene" uid="uid://1o0fxooiheou" path="res://bullet.tscn" id="2_durx2"]
+[ext_resource type="Texture2D" uid="uid://d3ywkguasm3o2" path="res://2dtopdownsprite copy.png" id="3_mk2j6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6qqqf"]
+radius = 25.0799
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lro5a"]
+radius = 28.0179
+
+[sub_resource type="Theme" id="Theme_omwrx"]
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_ri586")
+bullet = ExtResource("2_durx2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6qqqf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+texture = ExtResource("3_mk2j6")
+
+[node name="shell_spawn" type="Node2D" parent="Sprite2D"]
+position = Vector2(43.5, 0)
+rotation = -1.5708
+
+[node name="bullet_spawn" type="Node2D" parent="Sprite2D"]
+position = Vector2(43.5, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_lro5a")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="HealthLabel" type="Label" parent="Camera2D"]
+offset_left = -288.5
+offset_top = -162.0
+offset_right = -248.5
+offset_bottom = -139.0
+
+[node name="Healthbar" type="ProgressBar" parent="Camera2D"]
+offset_left = -288.0
+offset_top = -162.0
+offset_right = -102.0
+offset_bottom = -134.0
+theme = SubResource("Theme_omwrx")
+show_percentage = false
+
+[node name="StaminaLabel" type="Label" parent="Camera2D"]
+offset_left = -287.0
+offset_top = -114.0
+offset_right = -250.0
+offset_bottom = -91.0
+
+[node name="Staminabar" type="ProgressBar" parent="Camera2D"]
+offset_left = -286.0
+offset_top = -114.0
+offset_right = -103.0
+offset_bottom = -87.0
+show_percentage = false
+
+[node name="AmmoLabel" type="Label" parent="Camera2D"]
+offset_left = -273.0
+offset_top = 115.0
+offset_right = -108.0
+offset_bottom = 146.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

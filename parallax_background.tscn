@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bul0ayhi06qlg"]
+
+[ext_resource type="Texture2D" uid="uid://dckk43470spb2" path="res://backgroundtexture.png" id="1_ai1py"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2"]
+position = Vector2(1.5, 1.5)
+scale = Vector2(0.998438, 0.997222)
+texture = ExtResource("1_ai1py")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer3"]

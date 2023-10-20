@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dui3dol3q0imf"]
+
+[ext_resource type="Script" path="res://cpu_particles_2d.gd" id="1_8sl5l"]
+
+[sub_resource type="Curve" id="Curve_jb6og"]
+_data = [Vector2(0.0260357, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+position = Vector2(153, -27)
+scale = Vector2(1e-05, 1e-05)
+emitting = false
+amount = 69
+lifetime = 0.5
+one_shot = true
+randomness = 0.19
+direction = Vector2(2.08165e-12, -1)
+spread = 100.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
+angular_velocity_min = 50.0
+angular_velocity_max = 50.0
+scale_amount_min = 10.0
+scale_amount_max = 25.0
+scale_amount_curve = SubResource("Curve_jb6og")
+color = Color(0.545098, 0.560784, 0.137255, 1)
+script = ExtResource("1_8sl5l")
